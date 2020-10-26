@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 5088140779329998950}
   - component: {fileID: 5088140779329998951}
   - component: {fileID: 5088140779329998944}
+  - component: {fileID: -53325708624066085}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,9 +140,25 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 20947cdb-4103-4907-a4fd-ec2612ab6bf8
     m_ActionName: Movement /Move[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e4c958e5-b76b-4439-a4db-585e2c455ade
+    m_ActionName: Camara mov./Mouse movement[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8a03ec72-ddf4-44c6-8912-3d20bc3aab9b
+    m_ActionName: PS4 movement/Movement Player[/DualShock4GamepadHID/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a677a562-22de-4aec-b829-373cd2a70308
+    m_ActionName: PS4 movement/Movement Camera[/DualShock4GamepadHID/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 52d441d5-5b1e-46d1-876f-52ba292428a7
+    m_ActionName: PS4 movement/Input Actions [/DualShock4GamepadHID/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 'Movement '
+  m_DefaultActionMap: 93818cd0-de58-4b86-a891-38ff7ede8c82
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &5088140779329998944
@@ -157,3 +174,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!54 &-53325708624066085
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088140779329998945}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
