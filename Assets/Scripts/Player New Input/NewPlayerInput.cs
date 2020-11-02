@@ -10,6 +10,9 @@ public class NewPlayerInput : MonoBehaviour
     Vector3 movement;
     public Rigidbody rb;
 
+    [SerializeField]
+    private int playerIndex = 0; 
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
@@ -24,6 +27,7 @@ public class NewPlayerInput : MonoBehaviour
     void Update()
     {
         movement = new Vector3(move.x, 0, move.y);
+
         //movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
     }
@@ -34,6 +38,11 @@ public class NewPlayerInput : MonoBehaviour
     void moveCharacter(Vector3 direction)
     {
         rb.MovePosition((Vector3)transform.position + (direction * 5f * Time.deltaTime));
+    }
+
+    public int GetPlayerIndex()
+    {
+        return playerIndex; 
     }
 
 

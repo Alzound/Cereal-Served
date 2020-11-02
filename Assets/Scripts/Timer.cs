@@ -77,10 +77,7 @@ public class Timer : MonoBehaviour
         {
             timerTxt.text = "";
         }
-        if (GameObject.Find("PlayerBall").GetComponent<P2BallGlue>().objCounter2 >= 15)
-        {
-            timerTxt.text = "";
-        }
+      
     }
 
     void timerRestart()

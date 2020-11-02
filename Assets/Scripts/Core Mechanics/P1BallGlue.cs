@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class P1BallGlue : MonoBehaviour

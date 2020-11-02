@@ -9,6 +9,7 @@ TagManager:
   - Manager
   - Timer
   - gameStatus
+  - Player2
   layers:
   - Default
   - TransparentFX
