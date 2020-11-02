@@ -13,8 +13,8 @@ public class GeneratedWave: MonoBehaviour
     public int[] triangles;
 
 
-    public int columns = 3;
-    public int rows = 2;
+    public int columns = 40;
+    public int rows = 40;
 
     private MeshFilter filter;
 

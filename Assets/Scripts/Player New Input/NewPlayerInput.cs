@@ -1,19 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
 
 public class NewPlayerInput : MonoBehaviour
 {
-    public float speed = 5;
-    private Vector2 movementInput; 
+    PlayerControls controls;
+    Vector3 move;
+    Vector3 movement;
+    public Rigidbody rb;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
+        rb = this.GetComponent<Rigidbody>();
     }
 
-    public void OnMovement(InputAction.CallbackContext ctxt) => movementInput = ctxt.ReadValue<Vector2>();
+    void Awake()
+    {
+        controls = new PlayerControls();
+        controls.Player.Movement.performed += ctx => move = ctx.ReadValue<Vector2>();
+        controls.Player.Movement.canceled += ctx => move = Vector2.zero;
+    }
+    void Update()
+    {
+        movement = new Vector3(move.x, 0, move.y);
+        //movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+    }
+    void FixedUpdate()
+    {
+        moveCharacter(movement);
+    }
+    void moveCharacter(Vector3 direction)
+    {
+        rb.MovePosition((Vector3)transform.position + (direction * 5f * Time.deltaTime));
+    }
+
+
+    void OnEnable()
+    {
+        controls.Player.Enable();
+    }
+    void OnDisable()
+    {
+        controls.Player.Disable();
+    }
+
+
 }
+

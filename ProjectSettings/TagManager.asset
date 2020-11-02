@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Neutral Cereal
   - Milk
+  - Manager
+  - Timer
+  - gameStatus
   layers:
   - Default
   - TransparentFX
@@ -16,8 +19,8 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
+  - P1 Cam
+  - P2 Cam
   - 
   - 
   - 

@@ -16,7 +16,7 @@ public class Glued : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "PlayerBall")
+        if (col.gameObject.tag == "Player" || col.gameObject.tag == "Player2")
         {
 
             //make objet a child of the player
@@ -26,6 +26,7 @@ public class Glued : MonoBehaviour
             //set to be kinematic
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             gameObject.GetComponent<Rigidbody>().useGravity = false;
+            gameObject.GetComponent<Rigidbody>().mass = 0; 
 
         }
 
