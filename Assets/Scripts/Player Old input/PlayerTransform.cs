@@ -12,10 +12,19 @@ public class PlayerTransform : MonoBehaviour
     public float walkSpeed = 5.0f;
     public float frame;
 
+    [Header("Force")]
+
+    public int force;
+    public int obj;
+
+    [Header("Control")]
+
+    public string controller;
+
     [Header("Jump")]
 
-    public float vVelocity;
-    public float jumpForce = 15.0f;
+    public float vVelocity = 0f;
+    public float jumpForce = 10.0f;
     public float gravity = 9.81f;
 
     [Header("Ground")]
@@ -29,25 +38,33 @@ public class PlayerTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        controller = "none";
     }
 
     // Update is called once per frame
     void Update()
     {
-        hxMovement = Input.GetAxis("Horizontal");
-        hzMovement = Input.GetAxis("Vertical");
+        controller = GameObject.Find("Player Manager").GetComponent<ControlsManager>().controller;
+        hxMovement = Input.GetAxis(controller + "Horizontal");
+        Debug.Log(hzMovement);
+        Debug.Log(hxMovement);
+        hzMovement = Input.GetAxis(controller + "Vertical");
         frame = Time.deltaTime;
         transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame , hzMovement * frame * walkSpeed);
         isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, ground);
 
         if(isGrounded)
         {
-            vVelocity = 0;
+            vVelocity = 0f; 
             transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
+            gravity = 0f; 
 
-        }if (Input.GetButtonDown("Jump"))
+
+        }
+        if (isGrounded == true && Input.GetButtonDown(controller + "Jump"))
         {
+            isGrounded = false; 
+            gravity = 9.81f;
             vVelocity = jumpForce;
             transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
 
@@ -55,8 +72,21 @@ public class PlayerTransform : MonoBehaviour
         else
         {
             vVelocity -= (gravity * frame);
-            transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
+            transform.Translate(hxMovement * frame * walkSpeed, 0 * frame, hzMovement * frame * walkSpeed);
+
         }
 
     }
+
+    void OnColiisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Player2")
+        {
+            obj = GameObject.Find("PlayerBall").GetComponent<P1BallGlue>().objCounter;
+            hxMovement += (hxMovement + obj);
+            hzMovement += (hzMovement + obj);
+
+        }
+    }
+
 }

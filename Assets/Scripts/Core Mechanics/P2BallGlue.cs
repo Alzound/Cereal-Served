@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class P1BallGlue : MonoBehaviour
+public class P2BallGlue : MonoBehaviour
 {
     public int objCounter = 0;
     public float points = 0;

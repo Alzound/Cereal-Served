@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
@@ -32,7 +31,7 @@ public class Timer : MonoBehaviour
     {
         t = t - Time.deltaTime;
 
-        if (Keyboard.current.rKey.isPressed)
+        if (Input.GetKey(KeyCode.R))
         {
             Debug.Log("Super Hot");
 
