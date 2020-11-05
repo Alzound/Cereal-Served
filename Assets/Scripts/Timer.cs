@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 
 public class Timer : MonoBehaviour
 {
-    public Text  timerTxt;
+    public TextMeshProUGUI  timerTxtP1;
+    public TextMeshProUGUI timerTxtP2;
     private float startTime;
     public float t = 60;
 
@@ -41,7 +43,8 @@ public class Timer : MonoBehaviour
         }
         string minutes = ((int)t / 60).ToString();
         string seconds = (t % 60).ToString("f2");
-        timerTxt.text = minutes + ":" + seconds;
+        timerTxtP1.text = minutes + ":" + seconds;
+        timerTxtP2.text = minutes + ":" + seconds;
 
 
 
@@ -59,7 +62,8 @@ public class Timer : MonoBehaviour
         t = t - Time.deltaTime;
         string minutes = ((int)t / 60).ToString();
         string seconds = (t % 60).ToString("f2");
-        timerTxt.text = minutes + ":" + seconds;
+        timerTxtP1.text = minutes + ":" + seconds;
+        timerTxtP2.text = minutes + ":" + seconds;
 
     }
 
@@ -68,15 +72,9 @@ public class Timer : MonoBehaviour
     {
         if (t <= 0)
         {
-            timerTxt.text = "You lost :(  \n R-Restart. \n Tab-Quit.";
+            timerTxtP1.text = "You lost :(  \n R-Restart. \n Tab-Quit.";
+            timerTxtP2.text = "You lost :(  \n R-Restart. \n Tab-Quit.";
         }
-        //Uff blessed thy lord, this line of code can access another script and retrieve it's value. 
-        //PD: I love you, guy who or woman who created this. 
-        if (GameObject.Find("PlayerBall").GetComponent<P1BallGlue>().objCounter >= 15)
-        {
-            timerTxt.text = "";
-        }
-      
     }
 
     void timerRestart()

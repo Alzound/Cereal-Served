@@ -8,11 +8,6 @@ public class ControlsManager : MonoBehaviour
     public string controller;  // I store this in the Player class
     public string controller2; 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
