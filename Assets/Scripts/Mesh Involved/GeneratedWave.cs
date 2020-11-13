@@ -44,10 +44,10 @@ public class GeneratedWave: MonoBehaviour
                 int index = (i * rows + j) * 6;
 
                 /* animación, se cambia la altura según la función senoidal */
-                float deltasinAncho1 = Mathf.Sin(Time.time + (i + 0)) * 0.2f;
-                float deltasinAncho2 = Mathf.Sin(Time.time + (i + 1)) * 0.2f;
-                float deltasinAlto1 = Mathf.Sin(Time.time + (j + 0)) * 0.2f;
-                float deltasinAlto2 = Mathf.Sin(Time.time + (j + 1)) * 0.2f;
+                float deltasinAncho1 = Mathf.Sin(Time.time + (i + 0)) * 0.5f;
+                float deltasinAncho2 = Mathf.Sin(Time.time + (i + 1)) * 0.5f;
+                float deltasinAlto1 = Mathf.Sin(Time.time + (j + 0)) * 0.5f;
+                float deltasinAlto2 = Mathf.Sin(Time.time + (j + 1)) * 0.5f;
 
                 vertex[index] = new Vector3(i + 0,(deltasinAncho1 + deltasinAlto1),j + 0);
                 vertex[index + 1] = new Vector3(i + 1, (deltasinAncho2 + deltasinAlto1), j + 0);

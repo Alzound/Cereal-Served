@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CS4 : MonoBehaviour
 {
     [Header("Movement")]
 
-    public float hcxMovement;
-    public float hczMovement;
+    public float hxMovement;
+    public float hzMovement;
     public float walkSpeed = 5.0f;
     public float frame;
 
@@ -35,58 +36,55 @@ public class CS4 : MonoBehaviour
     public LayerMask ground;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
-        controller = "none"; 
+   
+        controller = "none";
     }
 
     // Update is called once per frame
     void Update()
     {
         controller = GameObject.Find("Player Manager").GetComponent<ControlsManager>().controller2;
-        hcxMovement = Input.GetAxis(controller + "Horizontal");
-        Debug.Log(hcxMovement);
-        Debug.Log(hczMovement);
-        hczMovement = Input.GetAxis(controller + "Vertical");
-        frame = Time.deltaTime;
-        transform.Translate(hcxMovement * frame * walkSpeed, vVelocity * frame, hczMovement * frame * walkSpeed);
-        isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, ground);
+        if (controller != "none")
+        {
 
+            hxMovement = Input.GetAxis(controller + "Horizontal");
+            hzMovement = Input.GetAxis(controller + "Vertical");
+            frame = Time.deltaTime;
+            transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed); 
+            Debug.Log("Bailando");
+            isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, ground);
+        }
+        else
+        {
+            controller = GameObject.Find("Player Manager").GetComponent<ControlsManager>().controller;
+        }
         if (isGrounded)
         {
             vVelocity = 0f;
-            transform.Translate(hcxMovement * frame * walkSpeed, vVelocity * frame, hczMovement * frame * walkSpeed);
+            transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
             gravity = 0f;
 
 
         }
-        if (isGrounded == true && Input.GetButtonDown(controller + "X button"))
+        if (isGrounded == true && Input.GetButtonDown(controller + "Jump"))
         {
             isGrounded = false;
             gravity = 9.81f;
             vVelocity = jumpForce;
-            transform.Translate(hcxMovement * frame * walkSpeed, vVelocity * frame, hczMovement * frame * walkSpeed);
+            transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
 
         }
         else
         {
             vVelocity -= (gravity * frame);
-            transform.Translate(hcxMovement * frame * walkSpeed, 0 * frame, hczMovement * frame * walkSpeed);
+            transform.Translate(hxMovement * frame * walkSpeed, 0 * frame, hzMovement * frame * walkSpeed);
 
         }
 
     }
-
-    void OnColiisionEnter(Collision col)
-    {
-        if (col.gameObject.tag == "Player1")
-        {
-            obj = GameObject.Find("PlayerBall").GetComponent<P2BallGlue>().objCounter;
-            hcxMovement += (hcxMovement + obj);
-            hczMovement += (hczMovement + obj);
-
-        }
-    }
-
 }
+

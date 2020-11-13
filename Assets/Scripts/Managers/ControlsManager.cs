@@ -6,21 +6,28 @@ public class ControlsManager : MonoBehaviour
 {
 
     public string controller;  // I store this in the Player class
-    public string controller2; 
+    public string controller2;
+
 
 
     // Update is called once per frame
     void Update()
     {
+        ChooseController();
+    }
+
+
+    void ChooseController()
+    {
         if (Input.GetButton("Start"))
         {
             controller = "A";
-            Debug.Log(controller); 
+      
         }
         else if (Input.GetButton("2Start"))
         {
-            controller2 = "B";
-            Debug.Log(controller2);
+            controller2 = "C";
+     
         }
     }
 }
