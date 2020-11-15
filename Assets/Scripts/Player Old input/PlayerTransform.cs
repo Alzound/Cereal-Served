@@ -16,8 +16,8 @@ public class PlayerTransform : MonoBehaviour
 
     public int force;
     public int obj;
-    public Rigidbody rb;
     public float push;
+    public int punch;
 
 
     [Header("Control")]
@@ -42,9 +42,7 @@ public class PlayerTransform : MonoBehaviour
     void Start()
     {
         controller = "none";
-        rb = GetComponent<Rigidbody>();
        
-
     }
 
     // Update is called once per frame
@@ -82,6 +80,9 @@ public class PlayerTransform : MonoBehaviour
                 transform.Translate(hxMovement * frame * walkSpeed, 0 * frame, hzMovement * frame * walkSpeed);
 
             }
+
+        
+          
         }
         else
         {
@@ -91,7 +92,39 @@ public class PlayerTransform : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision hit)
+    {
 
+
+        if(hit.gameObject.tag == "Player2")
+        {
+            push = GameObject.Find("P2 Handler").GetComponent<P2BallGlue>().objCounter;
+            
+
+            if(push < 2)
+            {
+  
+                punch = 100;
+                transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
+                Debug.Log("1ro se mueve");
+
+            }
+            else if(push > 2 && push <= 4)
+            {
+      
+                punch = 200;
+                transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
+
+            }
+            else if(push > 4 )
+            {
+                punch = 300;
+                transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
+
+
+            }
+        }
+    }
 
 }
 

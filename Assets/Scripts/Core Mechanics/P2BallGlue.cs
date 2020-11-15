@@ -12,22 +12,19 @@ public class P2BallGlue : MonoBehaviour
     public float walkspeed;
     public Animator anima;
     public Text wintxt;
-    Collider onColission;
-    Rigidbody rb; 
 
 
     private void Start()
     {
         //This gets the animator component. 
         anima = GetComponent<Animator>();
-        onColission = GetComponent<Collider>();
-        rb = GetComponent<Rigidbody>();
+
     }
 
 
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("1");
+
         if (col.gameObject.tag == "Neutral Cereal")
         {
             //All this proccess controls the counter of the objects, as well as the size of the player ball, with it making it bigger
@@ -35,16 +32,6 @@ public class P2BallGlue : MonoBehaviour
             points = objCounter * highscore;
             scale = objCounter + dScale;
             gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + dScale, gameObject.transform.localScale.y + dScale, gameObject.transform.localScale.z + dScale);
-
-        }
-
-        Debug.Log("Please");
-        if (col.gameObject.tag == "Player")
-        {
-            Debug.Log("Entra");
-            rb.AddForce(transform.up * 20.5f);
-  
-
 
         }
 

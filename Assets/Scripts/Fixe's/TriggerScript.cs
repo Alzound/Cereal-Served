@@ -7,11 +7,11 @@ namespace MyGame
     public class TriggerScript : MonoBehaviour
     {
         public PlayerIndexManager pIndexManager;
-        public Rigidbody rb;
+
 
         private void Start()
         {
-            rb = GetComponent<Rigidbody>();
+
         }
 
         private void OnTriggerEnter(Collider other)
@@ -29,8 +29,8 @@ namespace MyGame
                         if (avtscr.playerIndex == PlayerIndex.TWO)
                         {
                             player = PlayerIndex.TWO;
-                            rb.AddForce(transform.forward * 12.5f);
-                            Debug.Log("Force");
+      
+
                         }
                         break;
                     case PlayerIndex.TWO:

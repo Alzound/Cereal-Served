@@ -17,6 +17,8 @@ public class CS4 : MonoBehaviour
 
     public int force;
     public int obj;
+    public float push;
+    public int punch;
 
     [Header("Control")]
 
@@ -55,7 +57,6 @@ public class CS4 : MonoBehaviour
             hzMovement = Input.GetAxis(controller + "Vertical");
             frame = Time.deltaTime;
             transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed); 
-            Debug.Log("Bailando");
             isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, ground);
         }
         else
@@ -86,5 +87,44 @@ public class CS4 : MonoBehaviour
         }
 
     }
+
+
+
+    private void OnCollisionEnter(Collision hit)
+    {
+
+
+        if (hit.gameObject.tag == "Player")
+        {
+
+            Debug.Log("Entro al 2");
+            push = GameObject.Find("P1 Handler").GetComponent<P1BallGlue>().objCounter;
+
+
+            if (push < 2)
+            {
+                Debug.Log(push);
+                punch = 100;
+                transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
+                Debug.Log("2do se mueve");
+
+            }
+            else if (push > 2 && push <= 4)
+            {
+
+                punch = 200;
+                transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
+
+            }
+            else if (push > 4)
+            {
+                punch = 300;
+                transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
+
+
+            }
+        }
+    }
+
 }
 
