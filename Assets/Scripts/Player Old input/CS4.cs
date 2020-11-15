@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class CS4 : MonoBehaviour
 {
@@ -17,8 +16,9 @@ public class CS4 : MonoBehaviour
 
     public int force;
     public int obj;
-    public float push;
+    public int push;
     public int punch;
+
 
     [Header("Control")]
 
@@ -38,12 +38,11 @@ public class CS4 : MonoBehaviour
     public LayerMask ground;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
-   
         controller = "none";
+
     }
 
     // Update is called once per frame
@@ -52,73 +51,75 @@ public class CS4 : MonoBehaviour
         controller = GameObject.Find("Player Manager").GetComponent<ControlsManager>().controller2;
         if (controller != "none")
         {
-
+            int objCounter = GameObject.Find("P1 Handler").GetComponent<P1BallGlue>().objCounter;
+            push = objCounter; 
             hxMovement = Input.GetAxis(controller + "Horizontal");
             hzMovement = Input.GetAxis(controller + "Vertical");
             frame = Time.deltaTime;
-            transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed); 
+            transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
             isGrounded = Physics.CheckSphere(groundCheck.position, checkRadius, ground);
+
+            if (isGrounded)
+            {
+                vVelocity = 0f;
+                transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
+                gravity = 0f;
+
+
+            }
+            if (isGrounded == true && Input.GetButtonDown(controller + "Jump"))
+            {
+                isGrounded = false;
+                gravity = 9.81f;
+                vVelocity = jumpForce;
+                transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
+
+            }
+            else
+            {
+                vVelocity -= (gravity * frame);
+                transform.Translate(hxMovement * frame * walkSpeed, 0 * frame, hzMovement * frame * walkSpeed);
+
+            }
+
+
+
         }
         else
         {
             controller = GameObject.Find("Player Manager").GetComponent<ControlsManager>().controller;
         }
-        if (isGrounded)
-        {
-            vVelocity = 0f;
-            transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
-            gravity = 0f;
 
-
-        }
-        if (isGrounded == true && Input.GetButtonDown(controller + "Jump"))
-        {
-            isGrounded = false;
-            gravity = 9.81f;
-            vVelocity = jumpForce;
-            transform.Translate(hxMovement * frame * walkSpeed, vVelocity * frame, hzMovement * frame * walkSpeed);
-
-        }
-        else
-        {
-            vVelocity -= (gravity * frame);
-            transform.Translate(hxMovement * frame * walkSpeed, 0 * frame, hzMovement * frame * walkSpeed);
-
-        }
 
     }
-
-
 
     private void OnCollisionEnter(Collision hit)
     {
 
 
-        if (hit.gameObject.tag == "Player")
+        if (hit.gameObject.tag == "Player1")
         {
 
-            Debug.Log("Entro al 2");
-            push = GameObject.Find("P1 Handler").GetComponent<P1BallGlue>().objCounter;
 
 
             if (push < 2)
             {
-                Debug.Log(push);
+
                 punch = 100;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
-                Debug.Log("2do se mueve");
+                Debug.Log("1ro se mueve");
 
             }
             else if (push > 2 && push <= 4)
             {
-
-                punch = 200;
+                Debug.Log("1ro se mueve y entro al segundo state");
+                punch = 500;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
             }
             else if (push > 4)
             {
-                punch = 300;
+                punch = 1000;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
 
