@@ -18,7 +18,7 @@ namespace MyGame
         {
             PlayerIndex player = PlayerIndex.ONE;
             PlayerIndexManager avtscr = null;
-            avtscr = other.transform.parent.GetComponent<PlayerIndexManager>();
+            avtscr = other.GetComponentInParent<PlayerIndexManager>();
             if (avtscr != null)
             {
                 switch (pIndexManager.playerIndex)

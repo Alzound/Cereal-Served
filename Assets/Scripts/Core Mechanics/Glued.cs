@@ -16,7 +16,7 @@ public class Glued : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Player" || col.gameObject.tag == "Player2")
+        if (col.gameObject.tag == "Player1" || col.gameObject.tag == "Player2")
         {
 
             //make objet a child of the player

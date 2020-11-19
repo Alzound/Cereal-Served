@@ -11,6 +11,7 @@ TagManager:
   - gameStatus
   - Player2
   - P2
+  - Player1
   layers:
   - Default
   - TransparentFX

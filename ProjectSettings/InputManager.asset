@@ -298,7 +298,7 @@ InputManager:
     descriptiveName: Y-Axis
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: 0
+    positiveButton: l
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

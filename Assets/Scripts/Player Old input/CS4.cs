@@ -51,7 +51,8 @@ public class CS4 : MonoBehaviour
         controller = GameObject.Find("Player Manager").GetComponent<ControlsManager>().controller2;
         if (controller != "none")
         {
-            int objCounter = GameObject.Find("P1 Handler").GetComponent<P1BallGlue>().objCounter;
+
+            int objCounter = gameObject.transform.parent.GetComponentInChildren<P1BallGlue>().objCounter;
             push = objCounter; 
             hxMovement = Input.GetAxis(controller + "Horizontal");
             hzMovement = Input.GetAxis(controller + "Vertical");
@@ -96,23 +97,21 @@ public class CS4 : MonoBehaviour
     private void OnCollisionEnter(Collision hit)
     {
 
-
         if (hit.gameObject.tag == "Player1")
         {
-
 
 
             if (push < 2)
             {
 
-                punch = 100;
+                punch = 200;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
-                Debug.Log("1ro se mueve");
+
 
             }
             else if (push > 2 && push <= 4)
             {
-                Debug.Log("1ro se mueve y entro al segundo state");
+ 
                 punch = 500;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
