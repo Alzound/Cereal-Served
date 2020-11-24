@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI timerTxtP2;
     private float startTime;
     public float t = 60;
-
+    public string winner; 
 
 
 
@@ -22,7 +22,7 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        winner = "none";
         //This is the timer that i used in order for the player to know how much time he has.
         timerStart();
 
@@ -31,6 +31,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         t = t - Time.deltaTime;
 
         if (Input.GetKey(KeyCode.R))
@@ -47,11 +48,7 @@ public class Timer : MonoBehaviour
         timerTxtP2.text = minutes + ":" + seconds;
 
 
-
         timerLost();
-
-
-
     }
 
 
@@ -70,10 +67,22 @@ public class Timer : MonoBehaviour
     //In case the time runs out the game stops. 
     public void timerLost()
     {
-        if (t <= 0)
+        winner = GameObject.Find("Trigger").GetComponent<Trigger>().winner;
+        if (t <= 0 || winner != "none")
         {
-            timerTxtP1.text = "You lost :(  \n R-Restart. \n Tab-Quit.";
-            timerTxtP2.text = "You lost :(  \n R-Restart. \n Tab-Quit.";
+            
+            Debug.Log(winner);
+            Debug.Log("Conclusion");
+            if (winner == "Player 1")
+            {
+                timerTxtP1.text = "You lost :(  \n R-Restart. \n Tab-Quit.";
+                timerTxtP2.text = "You Win! :D  \n R-Restart. \n Tab-Quit.";
+            }
+            else if (winner == "Player 2")
+            {
+                timerTxtP1.text = "You Win! :O  \n R-Restart. \n Tab-Quit.";
+                timerTxtP2.text = "You lost :(  \n R-Restart. \n Tab-Quit.";
+            }
         }
     }
 

@@ -51,6 +51,7 @@ public class PlayerTransform : MonoBehaviour
         controller = GameObject.Find("Player Manager").GetComponent<ControlsManager>().controller;
         if (controller != "none")
         {
+            options(); 
             push = GameObject.Find("P2 Handler").GetComponent<P2BallGlue>().objCounter;
             hxMovement = Input.GetAxis(controller + "Horizontal");
             hzMovement = Input.GetAxis(controller + "Vertical");
@@ -106,23 +107,31 @@ public class PlayerTransform : MonoBehaviour
   
                 punch = 100;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
-                Debug.Log("1ro se mueve");
+  
 
             }
             else if(push > 2 && push <= 4)
             {
-                Debug.Log("1ro se mueve y entro al segundo state"); 
-                punch = 500;
+              
+                punch = 200;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
             }
             else if(push > 4 )
             {
-                punch = 1000;
+                punch = 300;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
 
             }
+        }
+    }
+
+    void options()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            Application.Quit(); 
         }
     }
 
