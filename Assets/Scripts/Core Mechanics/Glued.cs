@@ -18,7 +18,7 @@ public class Glued : MonoBehaviour
     {
         if (col.gameObject.tag == "Player1" || col.gameObject.tag == "Player2")
         {
-
+            
             //make objet a child of the player
             gameObject.transform.parent = col.transform;
             //Is curious how if you enabled the colissions (after they glued) the object tends to stay in the place where the other object was.

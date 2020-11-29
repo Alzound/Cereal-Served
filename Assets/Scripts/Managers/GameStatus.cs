@@ -11,27 +11,22 @@ public class GameStatus : MonoBehaviour
     public float points2 = 0;
     public string highscore1;
     public string highscore2;
-    public GameObject P1; 
    
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Entra...?"); 
+        //The update of the canvas according to their respective Text. 
         PointStatus();
-        Debug.Log("Entra...");
         statusTxtP1.text = "Points:" + highscore1 + "!";
         statusTxtP2.text = "Points:" + highscore2 + "!";
-        Debug.Log("Sale..."); 
     }
 
     void PointStatus()
     {
-        Debug.Log("Si entra"); 
+        //This updates the highscore taking the values of the P# BallGlue of objects and their respective operation. 
         points1 = GameObject.Find("P1 Handler").GetComponent<P1BallGlue>().points; 
-        Debug.Log("I have the points"); 
         points2 = GameObject.Find("P2 Handler").GetComponent<P2BallGlue>().points;
-        Debug.Log("I have the points second player");
         highscore1 = points1.ToString();
         highscore2 = points2.ToString();
     }

@@ -8,16 +8,8 @@ public class P1BallGlue : MonoBehaviour
     private float highscore = 100; 
     public float scale = .5f;
     public float dScale = .2f;
-    public float walkspeed; 
-    public Animator anima;
-    public Text wintxt;
 
 
-    private void Start()
-    {
-        //This gets the animator component. 
-        anima = GetComponent<Animator>();
-    }
     
 
     void OnCollisionEnter(Collision col)

@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 83c9de85b2f53974197cc853d575bab4
   - enabled: 1
+    path: Assets/Scenes/Continue.unity
+    guid: 72d1a73770bdbb94884a87edcc4424f8
+  - enabled: 1
+    path: Assets/Scenes/Continue 1.unity
+    guid: 56f55eda58a5f9a40a0de39b2e3e8eff
+  - enabled: 1
     path: Assets/Scenes/CerealServed_NIS_Version4.unity
     guid: 43245408490f3904fa6fd96024d79711
   m_configObjects:

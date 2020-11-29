@@ -41,6 +41,7 @@ public class PlayerTransform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         controller = "none";
        
     }
@@ -48,9 +49,11 @@ public class PlayerTransform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         controller = GameObject.Find("Player Manager").GetComponent<ControlsManager>().controller;
         if (controller != "none")
         {
+            
             options(); 
             push = GameObject.Find("P2 Handler").GetComponent<P2BallGlue>().objCounter;
             hxMovement = Input.GetAxis(controller + "Horizontal");
@@ -100,9 +103,9 @@ public class PlayerTransform : MonoBehaviour
         if(hit.gameObject.tag == "Player2")
         {
 
-            
+           
 
-            if(push < 2)
+            if(push < 8)
             {
   
                 punch = 100;
@@ -110,16 +113,16 @@ public class PlayerTransform : MonoBehaviour
   
 
             }
-            else if(push > 2 && push <= 4)
+            else if(push > 8 && push <= 16)
             {
               
-                punch = 200;
+                punch = 300;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
             }
-            else if(push > 4 )
+            else if(push > 16 )
             {
-                punch = 300;
+                punch = 500;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
 

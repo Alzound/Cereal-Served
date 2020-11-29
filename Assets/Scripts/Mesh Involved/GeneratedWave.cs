@@ -5,12 +5,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 
-
+[ExecuteInEditMode]
 public class GeneratedWave: MonoBehaviour
 {
     public Vector3[] vertex;
     public Vector2[] uvmap;
     public int[] triangles;
+    public float amplitudeV;
+    public float limit=.8f;
 
 
     public int columns = 40;
@@ -18,21 +20,36 @@ public class GeneratedWave: MonoBehaviour
 
     private MeshFilter filter;
 
+    private void Start()
+    {
+        StartCoroutine(wait()); 
+    }
+
     private void Awake()
     {
         GenerateMesh();
     }
-    private void Update()
+    private void FixedUpdate()
     {
-        
-        GenerateMesh();
+        wait();
+        GenerateMesh(); 
 
+    }
 
+    IEnumerator wait()
+    {
+        //Ok, so in this part of the code i simply make a for wich is going to increment my amplitude in .2f, this affects directly into de mesh and how the curves behave. 
+        for(amplitudeV = .2f;amplitudeV < limit; amplitudeV += .2f )
+        {
+            //And waits every 30 seconds to do the increment. 
+            yield return new WaitForSeconds(30);
+        }
+       
     }
     private void GenerateMesh()
     {
 
-
+        
     
         // vertices
         vertex = new Vector3[columns * rows * 6];
@@ -42,24 +59,26 @@ public class GeneratedWave: MonoBehaviour
             for (int j = 0; j < rows; ++j)
             {
                 int index = (i * rows + j) * 6;
+               
+                    /* Animation, it change the highed of the senoidal wave */
+                    float deltasinAncho1 = Mathf.Sin(Time.time + (i + 0)) * amplitudeV;
+                    float deltasinAncho2 = Mathf.Sin(Time.time + (i + 1)) * amplitudeV;
+                    float deltasinAlto1 = Mathf.Sin(Time.time + (j + 0)) * amplitudeV;
+                    float deltasinAlto2 = Mathf.Sin(Time.time + (j + 1)) * amplitudeV;
 
-                /* animación, se cambia la altura según la función senoidal */
-                float deltasinAncho1 = Mathf.Sin(Time.time + (i + 0)) * 0.5f;
-                float deltasinAncho2 = Mathf.Sin(Time.time + (i + 1)) * 0.5f;
-                float deltasinAlto1 = Mathf.Sin(Time.time + (j + 0)) * 0.5f;
-                float deltasinAlto2 = Mathf.Sin(Time.time + (j + 1)) * 0.5f;
+                    //This part of the code helps the mesh by connecting the vertex so it doesn't look clumpsy. 
+                    vertex[index] = new Vector3(i + 0, (deltasinAncho1 + deltasinAlto1), j + 0);
+                    vertex[index + 1] = new Vector3(i + 1, (deltasinAncho2 + deltasinAlto1), j + 0);
+                    vertex[index + 2] = new Vector3(i + 0, (deltasinAncho1 + deltasinAlto2), j + 1);
 
-                vertex[index] = new Vector3(i + 0,(deltasinAncho1 + deltasinAlto1),j + 0);
-                vertex[index + 1] = new Vector3(i + 1, (deltasinAncho2 + deltasinAlto1), j + 0);
-                vertex[index + 2] = new Vector3(i + 0, (deltasinAncho1 + deltasinAlto2), j + 1);
-
-                vertex[index + 3] = new Vector3(i + 1 ,(deltasinAncho2 + deltasinAlto1), j + 0);
-                vertex[index + 4] = new Vector3(i + 1,(deltasinAncho2 + deltasinAlto2), j + 1);
-                vertex[index + 5] = new Vector3(i + 0,(deltasinAncho1 + deltasinAlto2), j + 1);
+                    vertex[index + 3] = new Vector3(i + 1, (deltasinAncho2 + deltasinAlto1), j + 0);
+                    vertex[index + 4] = new Vector3(i + 1, (deltasinAncho2 + deltasinAlto2), j + 1);
+                    vertex[index + 5] = new Vector3(i + 0, (deltasinAncho1 + deltasinAlto2), j + 1);
+                
             }
         }
 
-        // poligonos
+        // poligons
         triangles = new int[rows * columns * 6];
 
         for (int i = 0; i < triangles.Length; ++i)
