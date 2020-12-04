@@ -42,7 +42,7 @@ public class GeneratedWave: MonoBehaviour
         for(amplitudeV = .2f;amplitudeV < limit; amplitudeV += .2f )
         {
             //And waits every 30 seconds to do the increment. 
-            yield return new WaitForSeconds(30);
+            yield return new WaitForSeconds(15);
         }
        
     }

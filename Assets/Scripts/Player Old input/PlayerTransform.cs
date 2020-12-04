@@ -108,7 +108,7 @@ public class PlayerTransform : MonoBehaviour
             if(push < 8)
             {
   
-                punch = 100;
+                punch = 50;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
   
 
@@ -116,13 +116,13 @@ public class PlayerTransform : MonoBehaviour
             else if(push > 8 && push <= 16)
             {
               
-                punch = 300;
+                punch = 70;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
             }
             else if(push > 16 )
             {
-                punch = 500;
+                punch = 85;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
 

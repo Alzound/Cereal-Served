@@ -9,8 +9,8 @@ public class CS4 : MonoBehaviour
 
     public float hxMovement;
     public float hzMovement;
-    public float walkSpeed = 5.0f;
-    public float frame;
+    public float walkSpeed = 0002.0f;
+    public float frame = 2.2f;
 
     [Header("Force")]
 
@@ -27,7 +27,7 @@ public class CS4 : MonoBehaviour
     [Header("Jump")]
 
     public float vVelocity = 0f;
-    public float jumpForce = 10.0f;
+    public float jumpForce = 0.0f;
     public float gravity = 9.81f;
 
     [Header("Ground")]
@@ -111,7 +111,7 @@ public class CS4 : MonoBehaviour
             if (push < 8)
             {
 
-                punch = 100;
+                punch = 50;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
 
@@ -119,13 +119,13 @@ public class CS4 : MonoBehaviour
             else if (push > 8 && push <= 16)
             {
  
-                punch = 300;
+                punch = 70;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
             }
             else if (push > 16)
             {
-                punch = 500;
+                punch = 85;
                 transform.Translate(hxMovement * frame * -walkSpeed * punch, vVelocity * frame, hzMovement * frame * -walkSpeed * punch);
 
 

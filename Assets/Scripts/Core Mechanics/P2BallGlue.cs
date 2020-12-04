@@ -6,8 +6,8 @@ public class P2BallGlue : MonoBehaviour
     public int objCounter = 0;
     public float points = 0;
     private float highscore = 100;
-    public float scale = .5f;
-    public float dScale = .2f;
+    public float scale = .05f;
+    public float dScale = .02f;
 
 
 
